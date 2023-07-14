@@ -1,23 +1,24 @@
 #include <stdio.h>
-
 /**
  * main - Entry point
  *
  *Return: Always 0 (Success)
  */
-
 int main(void)
 {
-	char c;
-	char d;
+	int n = 97;
+	int m = 65;
 
-	c = 'a';
-	d = 'A';
-	while
-		(c <= 'z') {
-			putchar(c);
-			c++;
-		}
+	while (m <= 122)
+	{
+		putchar(m);
+		n++;
+	}
+	while (m <= 90)
+	{
+		putchar(m);
+		n++;
+	}
 	putchar('\n');
 	return (0);
 }
