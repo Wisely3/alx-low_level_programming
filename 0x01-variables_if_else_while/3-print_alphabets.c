@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- * A program that prints the alphabet
+ *
  *Return: Always 0 (Success)
  */
 
