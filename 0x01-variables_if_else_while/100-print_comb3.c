@@ -1,16 +1,16 @@
 #include <stdio.h>
 /**
- * main - Entry point
+ * main - prints all possible combinations of two digits
+ *
  * Retain: Almost 0 (Success)
  */
-int main(void)
+int main(void) 
 {
-	int m;
-	int n;
+	int m, n;
 
-	for (m = 0; n < 9; m++)
+	for (m = 0; m < 9; m++)
 	{
-		for (n = m + 1; m < 10; n++)
+		for (n = m + 1; n < 10; n++)
 		{
 			putchar((m % 10) + '0');
 			putchar((n % 10) + '0');
@@ -19,7 +19,7 @@ int main(void)
 				continue;
 
 			putchar(',');
-			putchar(',');
+			putchar(' ');
 		}
 	}
 	putchar('\n');
