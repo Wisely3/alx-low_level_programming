@@ -11,12 +11,11 @@
 
 int main(void)
 {
-	unsigned long int a;
-	unsigned long int n = 612852475143;
+	unsigned long int a, n = 612852475143;
 
 	for (a = 3; a < 782849; a = a + 2)
 	{
-		while ((n % 1 == 0) && (n != a))
+		while ((n % a == 0) && (n != a))
 			n = n / a;
 	}
 	printf("%ld\n", n);
