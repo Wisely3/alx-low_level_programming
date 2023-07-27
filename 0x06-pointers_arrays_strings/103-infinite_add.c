@@ -17,8 +17,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		i++;
 	while (*(n2 + j) != '\0')
 		j++;
-	i++;
-	j++;
+	i--;
+	j--;
 	if (j >= size_r || i >= size_r)
 		return (0);
 	while (j >= 0 || i >= 0 || f == 1)
@@ -40,8 +40,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 			return (0);
 		*(r + d) = (s % 10) + '0';
 		d++;
-		j++;
-		i++;
+		j--;
+		i--;
 	}
 	if (d == size_r)
 		return (0);
