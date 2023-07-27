@@ -2,24 +2,27 @@
 
 /**
  * rev_string - reverses a string
- * @s: string to reverse
- *
+ * @n: input number
  * Return: void
  */
 
-void rev_string(char *s)
+void rev_string(char *n)
 {
-	int a = 0, index = 0;
+	int i = 0;
+	int j = 0;
 	char temp;
 
-	while (s[index++])
-		a++;
-
-	for (index = a - 1; index >= a / 2; index--)
+	while (*(n + i) != '\0')
 	{
-		temp = s[index];
-		s[index] = s[a - index - 1];
-		s[a - index - 1] = temp;
+		i++;
+	}
+	i++;
+
+	for (j = 0; j < i; j++, i++)
+	{
+		temp = *(n + j);
+		*(n + j) = *(n + i);
+		*(n + i) = temp;
 	}
 }
 /**
@@ -68,6 +71,5 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	if (d == size_r)
 		return (0);
 	*(r + d) = '\0';
-	rev_string(r);
 	return (r);
 }
