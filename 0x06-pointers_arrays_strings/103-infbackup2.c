@@ -1,28 +1,6 @@
 #include "main.h"
 
 /**
- * rev_string - reverses a string
- * @s: string to reverse
- *
- * Return: void
- */
-
-void rev_string(char *s)
-{
-	int a = 0, index = 0;
-	char temp;
-
-	while (s[index++])
-		a++;
-
-	for (index = a - 1; index >= a / 2; index--)
-	{
-		temp = s[index];
-		s[index] = s[a - index - 1];
-		s[a - index - 1] = temp;
-	}
-}
-/**
  * infinite_add - adds two numbers
  * @n1: input number
  * @n2: input number
@@ -68,6 +46,5 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	if (d == size_r)
 		return (0);
 	*(r + d) = '\0';
-	rev_string(r);
 	return (r);
-}	
+}
