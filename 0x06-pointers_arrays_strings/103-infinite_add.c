@@ -1,31 +1,6 @@
 #include "main.h"
 
 /**
- * rev_string - reverses a string
- * @n: input number
- * Return: void
- */
-
-void rev_string(char *n)
-{
-	int i = 0;
-	int j = 0;
-	char temp;
-
-	while (*(n + i) != '\0')
-	{
-		i++;
-	}
-	i++;
-
-	for (j = 0; j < i; j++, i++)
-	{
-		temp = *(n + j);
-		*(n + j) = *(n + i);
-		*(n + i) = temp;
-	}
-}
-/**
  * infinite_add - adds two numbers
  * @n1: input number
  * @n2: input number
@@ -36,41 +11,40 @@ void rev_string(char *n)
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int i = 0, j = 0, k, l = 0, f, s, d = 0;
+}
 
-	while (*(n1 + i) != '\0')
-		i++;
-	while (*(n2 + j) != '\0')
-		j++;
-	i--;
-	j--;
-	if (j >= size_r || i >= size_r)
-		return (0);
-	while (j >= 0 || i >= 0 || f == 1)
+/**
+ * add_strings - adds numbers in strings
+ * @n1: input number
+ * @n2: input number
+ * @r: buffer for storing the result
+ * @r_index: index of the buffer
+ * Return: r, otherwise 0
+ */
+
+char *add_strings(char *n1, char *n2, char *r, int r_index)
+{
+	int d, p = 0;
+
+	for (; *n1 && *n2; n1--, n2--, r_index--)
 	{
-		if (i < 0)
-			k = 0;
-		else
-			k = *(n1 + i) - '0';
-		if (j < 0)
-			l = 0;
-		else
-			l = *(n2 + j) - '0';
-		s = k + l + f;
-		if (s >= 10)
-			f = 1;
-		else
-			f = 0;
-		if (d >= (size_r - 1))
-			return (0);
-		*(r + d) = (s % 10) + '0';
-		d++;
-		j--;
-		i--;
+		d = (*n1 - '0') + (*n2 - '0');
+		d += p;
+		*(r + r_index) = (d % 10) + '0';
+		p = d / 10;
 	}
-	if (d == size_r)
-		return (0);
-	*(r + d) = '\0';
-	rev_string(r);
-	return (r);
+
+	for (; *n1; n1--; r_index++)
+	{
+		d = *(n1 - '0') + p;
+		*(r + r_index) = (d % 10) + '0';
+		p = d / 10;
+	}
+
+	for (; *n2; n2--; r_index--)
+	{
+		d = (*n2 - '0') + p;
+		*(r + r_index) = (d % 10) + '0';
+		p = d / 10;
+	}
 }
