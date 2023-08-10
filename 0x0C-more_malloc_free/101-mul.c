@@ -69,6 +69,18 @@ void print_int(unsigned long int n)
 }
 
 /**
+ * error - handles errors for the main
+ *
+ * Return: void
+ */
+
+void errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+/**
  * main - multiplies two positive numbers
  * @argc: the count of the argument
  * @argv: the vector of the argument
