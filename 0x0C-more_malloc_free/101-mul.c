@@ -1,75 +1,49 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * _puts - prints a string, followed by a new line, to stdout
- * @str: string
+ * is_digit - checks if a tring contains non-digit character
+ * @s: input string
  *
- * Return: Always 0
+ * Return: 0 otherwise 1
  */
 
-void _puts(char *str)
+int is_digit(char *s)
 {
 	int j = 0;
 
-	while (str[j])
+	while (s[j])
 	{
-		_putchar(str[j]);
+		if (s[j] < '0' || s[j] > '9')
+			return (0);
 		j++;
 	}
+
+	return (1);
 }
 
 /**
- * _atoi -  converts a string to an integer
- * @s: Pointer to convert
+ * _strlen - returns length of a given string
+ * @s: input string
  *
- * Return: An integer
+ * Return: string length
  */
 
-int _atoi(const char *s)
+int _strlen(char *s)
 {
-	int value = 1;
-	unsigned long int resp = 0, num1, j;
+	int j = 0;
 
-	for (num1 = 0; !(s[num1] >= 48 && s[num1] <= 57); num1++)
+	while (s[j] != '\0')
 	{
-		if (s[num1] == '-')
-		{
-			value *= -1;
-		}
+		j++;
 	}
 
-	for (j = num1; s[j] >= 48 && s[j] <= 57; j++)
-	{
-		resp *= 10;
-		resp += (s[j] - 48);
-	}
-
-	return (value * resp);
+	return (j);
 }
 
 /**
- * print_int - prints an integer
- * @n: an input integer
- *
- *Return: Always 0;
- */
-
-void print_int(unsigned long int n)
-{
-	unsigned long int div = 1, j, resp;
-
-	for (j = 0; n / div > 9; j++, div *= 10)
-		;
-
-	for (; div >= 1; n %= div, div /= 10)
-	{
-		resp = n / div;
-		_putchar('0' + resp);
-	}
-}
-
-/**
- * error - handles errors for the main
+ * errors - handles errors for the main
  *
  * Return: void
  */
@@ -82,24 +56,52 @@ void errors(void)
 
 /**
  * main - multiplies two positive numbers
- * @argc: the count of the argument
- * @argv: the vector of the argument
+ * @argc: the count or number of armuments
+ * @argv: the vector or array of arguments
  *
- * Return: Always 0 if success
+ * Return: Always 0
  */
 
 int main(int argc, char *argv[])
 {
-	(void)argc;
+	int length, carry, length1, length2, j, num1, num2, *result, c = 0;
+	char *str1, *str2;
 
-	if (argc != 3)
+	str1 = argv[1], str2 = argv[2];
+	if (argc != 3 || !is_digit(str1) || !is_digit(str2))
+		errors();
+	length1 = _strlen(str1);
+	length2 = _strlen(str2);
+	length = length1 + length2 + 1;
+	result = malloc(sizeof(int) * length);
+	if (!result)
+		return (1);
+	for (j = 0; j <= length1 + length2; j++)
+		result[j] = 0;
+	for (length1 = length1 - 1; length1 >= 0; length1--)
 	{
-		_puts("Error ");
-		exit(98);
+		num1 = str1[length1] - '0';
+		carry = 0;
+		for (length2 = _strlen(str2) - 1; length2 >= 0; length2--)
+		{
+			num2 = str2[length2] - '0';
+			carry += result[length1 + length2 + 1] + (num1 * num2);
+			result[length1 + length2 + 1] = carry % 10;
+			carry /= 10;
+		}
+		if (carry > 0)
+			result[length1 + length2 + 1] += carry;
 	}
-
-	print_int(_atoi(argv[1]) * _atoi(argv[2]));
+	for (j = 0; j < length - 1; j++)
+	{
+		if (result[j])
+			c = 1;
+		if (c)
+			_putchar(result[j] + '0');
+	}
+	if (!c)
+		_putchar('0');
 	_putchar('\n');
-
+	free(result);
 	return (0);
 }
