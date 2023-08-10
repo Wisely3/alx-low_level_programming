@@ -25,7 +25,7 @@ void _puts(char *str)
  * Return: An integer
  */
 
-int _atoi(char *s)
+int _atoi(const char *s)
 {
 	int value = 1;
 	unsigned long int resp = 0, num1, j;
