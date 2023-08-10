@@ -9,48 +9,42 @@
 
 void _puts(char *str)
 {
-	while (*str != '\0')
+	int j = 0;
+
+	while (str[j])
 	{
-		_putchar(*str++);
+		_putchar(str[j]);
+		j++;
 	}
-	_putchar('\n');
 }
 
 /**
  * _atoi -  converts a string to an integer
- * @s: Pointer to conver
+ * @s: Pointer to convert
  *
  * Return: An integer
  */
 
 int _atoi(char *s)
 {
-	int a = 0;
-	unsigned int ni = 0;
-	int min = 1;
-	int isi = 0;
+	int value = 1;
+	unsigned long int resp = 0, num1, j;
 
-	while (s[a])
+	for (num1 = 0; !(s[num1] >= 48 && s[num1] <= 57); num1++)
 	{
-		if (s[a] == 45)
+		if (s[num1] == '-')
 		{
-			min *= -1;
+			value *= -1;
 		}
-		while (s[a] >= 48 && s[a] <= 57)
-		{
-			isi = 1;
-			ni = (ni * 10) + (s[a] - '0');
-			a++;
-		}
-		if (isi == 1)
-		{
-			break;
-		}
-		a++;
 	}
-	ni *= min;
 
-	return (ni);
+	for (j = num1; s[j] >= 48 && s[j] <= 57; j++)
+	{
+		resp *= 10;
+		resp += (s[j] - 48);
+	}
+
+	return (value * resp);
 }
 
 /**
@@ -62,14 +56,14 @@ int _atoi(char *s)
 
 void print_int(unsigned long int n)
 {
-	unsigned long int ni = 1, j, resp;
+	unsigned long int div = 1, j, resp;
 
-	for (j = 0; n / ni > 9; j++, ni *= 10)
+	for (j = 0; n / div > 9; j++, div *= 10)
 		;
 
-	for (; ni >= 1; n %= ni, ni /= 10)
+	for (; div >= 1; n %= div, div /= 10)
 	{
-		resp = n / ni;
+		resp = n / div;
 		_putchar('0' + resp);
 	}
 }
@@ -84,19 +78,16 @@ void print_int(unsigned long int n)
 
 int main(int argc, char *argv[])
 {
-	int p = 0, q = 0;
+	(void)argc;
 
-	if (argc == 3)
+	if (argc != 3)
 	{
-		p = atoi(argv[1]);
-		q = atoi(argv[2]);
-		printf("%d\n", p * q);
+		_puts("Error ");
+		exit(98);
 	}
-	else
-	{
-		printf("Error\n");
-		return (1);
-	}
+
+	print_int(_atoi(argv[1]) * _atoi(argv[2]));
+	_putchar('\n');
 
 	return (0);
 }
