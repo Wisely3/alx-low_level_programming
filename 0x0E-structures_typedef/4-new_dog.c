@@ -48,7 +48,7 @@ char *_strcpy(char *dest, char *src)
  *@name: dog name
  *@age: dog age
  *@owner: dog owner
-
+ *
  *Return: pointer to new dog
  */
 
