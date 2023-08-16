@@ -9,7 +9,7 @@
  *
  * Return: sum of two input values
  */
-  
+
 int op_add(int a, int b)
 {
 	return (a + b);
@@ -22,7 +22,7 @@ int op_add(int a, int b)
  *
  * Return: difference of two input values
  */
-  
+
 int op_sub(int a, int b)
 {
 	return (a - b);
@@ -35,7 +35,7 @@ int op_sub(int a, int b)
  *
  * Return: product of two values
  */
-  
+
 int op_mul(int a, int b)
 {
 	return (a * b);
@@ -48,7 +48,7 @@ int op_mul(int a, int b)
  *
  * Return: result of the division of a by b
  */
-  
+
 int op_div(int a, int b)
 {
 	if (b == 0)
@@ -67,7 +67,7 @@ int op_div(int a, int b)
  *
  * Return: remainder of the division of a by b
  */
-  
+
 int op_mod(int a, int b)
 {
 	if (b == 0)
